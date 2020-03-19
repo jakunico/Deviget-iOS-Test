@@ -10,31 +10,26 @@ import UIKit
 
 class DetailViewController: UIViewController {
 
-    @IBOutlet weak var detailDescriptionLabel: UILabel!
-
-
-    func configureView() {
-        // Update the user interface for the detail item.
-        if let detail = detailItem {
-            if let label = detailDescriptionLabel {
-                label.text = detail.description
-            }
-        }
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        configureView()
-    }
-
-    var detailItem: NSDate? {
+    var viewModel: PostViewModel? {
         didSet {
-            // Update the view.
-            configureView()
+            subredditLabel.text = viewModel?.subreddit
+            timeAgoLabel.text = viewModel?.timeAgo
+            titleLabel.text = viewModel?.title
+            userLabel.text = viewModel?.user
+            commentsLabel.text = viewModel?.comments
+            
+            // TODO: Set image
         }
     }
-
-
+    
+    // MARK: - Private
+    
+    @IBOutlet private weak var subredditLabel: UILabel!
+    @IBOutlet private weak var timeAgoLabel: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var postImageView: UIImageView!
+    @IBOutlet private weak var userLabel: UILabel!
+    @IBOutlet private weak var commentsLabel: UILabel!
+    
 }
 

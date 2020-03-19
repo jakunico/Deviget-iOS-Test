@@ -15,6 +15,8 @@
 		FEFA82242423DDE600320636 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FEFA82232423DDE600320636 /* Assets.xcassets */; };
 		FEFA82272423DDE600320636 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FEFA82252423DDE600320636 /* LaunchScreen.storyboard */; };
 		FEFA82322423DDE600320636 /* Deviget_iOS_TestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82312423DDE600320636 /* Deviget_iOS_TestTests.swift */; };
+		FEFA82442423E3C400320636 /* PostTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82432423E3C400320636 /* PostTableCell.swift */; };
+		FEFA82472423F04500320636 /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82462423F04500320636 /* PostViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		FEFA822D2423DDE600320636 /* Deviget-iOS-TestTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Deviget-iOS-TestTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEFA82312423DDE600320636 /* Deviget_iOS_TestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deviget_iOS_TestTests.swift; sourceTree = "<group>"; };
 		FEFA82332423DDE600320636 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FEFA82432423E3C400320636 /* PostTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableCell.swift; sourceTree = "<group>"; };
+		FEFA82462423F04500320636 /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,9 +105,11 @@
 		FEFA823C2423E16400320636 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				FEFA82402423E19200320636 /* Storyboards */,
 				FEFA823E2423E17200320636 /* Presenters */,
+				FEFA82402423E19200320636 /* Storyboards */,
+				FEFA82422423E39A00320636 /* TableCells */,
 				FEFA823D2423E16D00320636 /* ViewControllers */,
+				FEFA82452423F02D00320636 /* ViewModels */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -148,6 +154,22 @@
 				FEFA82232423DDE600320636 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		FEFA82422423E39A00320636 /* TableCells */ = {
+			isa = PBXGroup;
+			children = (
+				FEFA82432423E3C400320636 /* PostTableCell.swift */,
+			);
+			path = TableCells;
+			sourceTree = "<group>";
+		};
+		FEFA82452423F02D00320636 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				FEFA82462423F04500320636 /* PostViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -251,6 +273,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FEFA82472423F04500320636 /* PostViewModel.swift in Sources */,
+				FEFA82442423E3C400320636 /* PostTableCell.swift in Sources */,
 				FEFA82192423DDE300320636 /* AppDelegate.swift in Sources */,
 				FEFA821B2423DDE300320636 /* SceneDelegate.swift in Sources */,
 				FEFA821D2423DDE300320636 /* MasterViewController.swift in Sources */,
