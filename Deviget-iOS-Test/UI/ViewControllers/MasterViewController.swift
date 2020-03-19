@@ -8,50 +8,188 @@
 
 import UIKit
 
+class MasterPresenter {
+    let masterViewController: MasterViewController
+    var detailViewController: DetailViewController?
+    
+    init(masterViewController: MasterViewController) {
+        self.masterViewController = masterViewController
+    }
+    
+    func prepare(for segue: UIStoryboardSegue) {
+        
+        switch segue.identifier {
+        case "showDetail":
+            
+            guard let indexPath = masterViewController.tableView.indexPathForSelectedRow else {
+                print("MasterPresenter: Received a 'showDetail' segue but table did not have any selected row")
+                return
+            }
+            
+            let viewModel = masterViewController.objects[indexPath.row]
+            let viewModelAsRead = viewModel.asRead()
+            
+            let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
+            controller.viewModel = viewModelAsRead
+            controller.navigationItem.leftBarButtonItem = masterViewController.splitViewController?.displayModeButtonItem
+            controller.navigationItem.leftItemsSupplementBackButton = true
+            
+            detailViewController = controller
+
+            masterViewController.replaceObject(viewModel, with: viewModelAsRead)
+            
+        default:
+            print("MasterPresenter: Received unknown segue with identifier: \(String(describing: segue.identifier))")
+        }
+    }
+    
+    func didRemoveAllObjects() {
+        detailViewController?.viewModel = nil
+    }
+    
+    func didDismissObject(_ object: PostViewModel) {
+        if detailViewController?.viewModel?.postIdentifier == object.postIdentifier {
+            detailViewController?.viewModel = nil
+        }
+    }
+    
+}
+
 class MasterViewController: UITableViewController {
+    
+    // MARK: - Internal
+    private(set) var objects = [PostViewModel]() {
+        didSet {
+            if objects.count > 0 {
+                addTrashButton()
+            } else {
+                presenter.didRemoveAllObjects()
+                removeTrashButton()
+            }
+        }
+    }
+    
+    /// Adds the given objects to the listing
+    func addObjects(_ objectsToAdd: [PostViewModel]) {
+        tableView.beginUpdates()
+        objectsToAdd.forEach {
+            objects.append($0)
+            tableView.insertRows(at: [IndexPath(row: objects.count - 1, section: 0)], with: .automatic)
+        }
+        tableView.endUpdates()
+    }
+    
+    func replaceObject(_ object: PostViewModel, with newObject: PostViewModel) {
+        if let index = objects.firstIndex(where: { $0.postIdentifier == object.postIdentifier }) {
+            objects[index] = newObject
+            // Animation adds a little "slide" effect to the read > unread transition
+            UIView.animate(withDuration: 0.3) {
+                (self.tableView.cellForRow(at: IndexPath(row: index, section: 0)) as? PostTableCell)?.viewModel = newObject
+            }
+        }
+    }
+    
+    // MARK: - Private
 
-    var detailViewController: DetailViewController? = nil
-    var objects = [Any]()
+    private var presenter: MasterPresenter!
 
-
+    // MARK: - Initialization
+    
+    override init(style: UITableView.Style) {
+        super.init(style: style)
+        fatalError("MasterViewController.init(style:) is not implemented")
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        presenter = MasterPresenter(masterViewController: self)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        fatalError("MasterViewController.init(nibName:bundle:) is not implemented")
+    }
+    
+    // MARK: - View Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        navigationItem.leftBarButtonItem = editButtonItem
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
-        if let split = splitViewController {
-            let controllers = split.viewControllers
-            detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
+        
+        func setupTableView() {
+            tableView.tableFooterView = UIView() // Removes separator lines in unused cells
         }
+        
+        setupTableView()
+        #if DEBUG
+        addGenerateRandomPostButton()
+        #endif
     }
 
     override func viewWillAppear(_ animated: Bool) {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
-    @objc
-    func insertNewObject(_ sender: Any) {
-        objects.insert(NSDate(), at: 0)
-        let indexPath = IndexPath(row: 0, section: 0)
-        tableView.insertRows(at: [indexPath], with: .automatic)
+    
+    // MARK: - UI utility
+    
+    func addTrashButton() {
+        let trashButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(actionDismissAll))
+        navigationItem.rightBarButtonItem = trashButton
     }
+    
+    func removeTrashButton() {
+        navigationItem.rightBarButtonItem = nil
+    }
+    
+    #if DEBUG
+    
+    func addGenerateRandomPostButton() {
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(actionGenerateSamplePost))
+        navigationItem.leftBarButtonItem = addButton
+    }
+    
+    @objc func actionGenerateSamplePost() {
+        let post = PostViewModel(postIdentifier: UUID().uuidString,
+                                 isRead: false,
+                                 subreddit: "r/gaming",
+                                 timeAgo: "2 hours ago",
+                                 title: "A wild post appeared!",
+                                 image: nil,
+                                 user: "u/nicolas",
+                                 comments: "341 comments")
+        addObjects([post])
+    }
+    
+    #endif
+    
+    // MARK: - Actions
 
+    @objc func actionDismissAll() {
+        guard objects.count > 0 else { return } // Nothing to dismiss
+        
+        tableView.beginUpdates()
+        let indexPaths = objects.enumerated().map({ IndexPath(row: $0.offset, section: 0) })
+        tableView.deleteRows(at: indexPaths, with: .left)
+        objects.removeAll()
+        tableView.endUpdates()
+        
+    }
+    
+    func actionDismiss(cell: PostTableCell) {
+        guard let viewModel = cell.viewModel else { return }
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        
+        tableView.beginUpdates()
+        objects.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .left)
+        tableView.endUpdates()
+        
+        presenter.didDismissObject(viewModel)
+    }
+    
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
-            if let indexPath = tableView.indexPathForSelectedRow {
-//                let object = objects[indexPath.row] as! NSDate
-//                let controller = (segue.destination as! UINavigationController).topViewController as! DetailViewController
-//                controller.detailItem = object
-//                controller.navigationItem.leftBarButtonItem = splitViewController?.displayModeButtonItem
-//                controller.navigationItem.leftItemsSupplementBackButton = true
-//                detailViewController = controller
-            }
-        }
+        presenter.prepare(for: segue)
     }
 
     // MARK: - Table View
@@ -65,26 +203,20 @@ class MasterViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as? PostTableCell else {
+            fatalError("Unable to dequeue PostTableCell, Storyboard containing MasterViewController probably got corrupted.")
+        }
+        
+        cell.delegate = self
+        cell.viewModel = objects[indexPath.row]
+        
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            objects.remove(at: indexPath.row)
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-        }
-    }
-
-
 }
 
+extension MasterViewController: PostTableCellDelegate {
+    func postTableCellDidTapDismiss(cell: PostTableCell) {
+        actionDismiss(cell: cell)
+    }
+}

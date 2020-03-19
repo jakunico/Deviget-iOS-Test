@@ -9,28 +9,27 @@
 import Foundation
 import UIKit
 
+protocol PostTableCellDelegate: class {
+    func postTableCellDidTapDismiss(cell: PostTableCell)
+}
+
 class PostTableCell: UITableViewCell {
     
     // MARK: - Internal
+    weak var delegate: PostTableCellDelegate?
 
     /// The viewModel currently set on the cell.
     /// Readonly, to set use `setViewModel(_:animated:)`.
-    fileprivate(set) var viewModel: PostViewModel?
-    
-    /// Sets the viewModel.
-    /// Use the animated property if you want to animate the change of content.
-    func setViewModel(_ viewModel: PostViewModel, animated: Bool) {
-        self.viewModel = viewModel
-        
-        if animated {
-            UIViewPropertyAnimator.runningPropertyAnimator(
-                withDuration: 0.3,
-                delay: 0,
-                options: [],
-                animations: { self.configure(with: viewModel) },
-                completion: nil)
-        } else {
-            configure(with: viewModel)
+    var viewModel: PostViewModel? {
+        didSet {
+            guard let viewModel = viewModel else { return }
+            [unreadIndicationView, unreadIndicationView.superview].forEach { $0?.isHidden = viewModel.isRead }
+            subredditLabel.text = viewModel.subreddit
+            timeAgoLabel.text = viewModel.timeAgo
+            titleLabel.text = viewModel.title
+            userLabel.text = viewModel.user
+            commentsLabel.text = viewModel.comments
+            postImageView.isHidden = viewModel.image == nil
         }
     }
     
@@ -45,14 +44,7 @@ class PostTableCell: UITableViewCell {
     @IBOutlet private weak var commentsLabel: UILabel!
     @IBOutlet private weak var dismissButton: UIButton!
     
-    private func configure(with viewModel: PostViewModel) {
-        unreadIndicationView.isHidden = viewModel.isRead
-        subredditLabel.text = viewModel.subreddit
-        timeAgoLabel.text = viewModel.timeAgo
-        titleLabel.text = viewModel.title
-        userLabel.text = viewModel.user
-        commentsLabel.text = viewModel.comments
-        
-        // TODO: set image
+    @IBAction func actionDismiss() {
+        delegate?.postTableCellDidTapDismiss(cell: self)
     }
 }

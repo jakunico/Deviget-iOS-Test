@@ -12,13 +12,7 @@ class DetailViewController: UIViewController {
 
     var viewModel: PostViewModel? {
         didSet {
-            subredditLabel.text = viewModel?.subreddit
-            timeAgoLabel.text = viewModel?.timeAgo
-            titleLabel.text = viewModel?.title
-            userLabel.text = viewModel?.user
-            commentsLabel.text = viewModel?.comments
-            
-            // TODO: Set image
+            configure(with: viewModel)
         }
     }
     
@@ -30,6 +24,29 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var postImageView: UIImageView!
     @IBOutlet private weak var userLabel: UILabel!
     @IBOutlet private weak var commentsLabel: UILabel!
+    @IBOutlet private weak var noPostLabel: UILabel!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configure(with: viewModel)
+    }
+    
+    private func configure(with viewModel: PostViewModel?) {
+        guard isViewLoaded else { return }
+        
+        subredditLabel.text = viewModel?.subreddit
+        timeAgoLabel.text = viewModel?.timeAgo
+        titleLabel.text = viewModel?.title
+        userLabel.text = viewModel?.user
+        commentsLabel.text = viewModel?.comments
+        
+        [subredditLabel, timeAgoLabel, titleLabel, userLabel, commentsLabel, postImageView].forEach {
+            $0?.isHidden = viewModel == nil
+        }
+        
+        postImageView.isHidden = viewModel?.image == nil
+        noPostLabel.isHidden = viewModel != nil
+        
+    }
 }
 

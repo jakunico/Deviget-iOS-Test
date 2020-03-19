@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FEDAD42724240DD400CA8191 /* UIKit+Deviget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD42624240DD400CA8191 /* UIKit+Deviget.swift */; };
+		FEDAD42A24241A2D00CA8191 /* CircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD42924241A2D00CA8191 /* CircularView.swift */; };
 		FEFA82192423DDE300320636 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82182423DDE300320636 /* AppDelegate.swift */; };
 		FEFA821B2423DDE300320636 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA821A2423DDE300320636 /* SceneDelegate.swift */; };
 		FEFA821D2423DDE300320636 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA821C2423DDE300320636 /* MasterViewController.swift */; };
@@ -30,6 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		FEDAD42624240DD400CA8191 /* UIKit+Deviget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Deviget.swift"; sourceTree = "<group>"; };
+		FEDAD42924241A2D00CA8191 /* CircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularView.swift; sourceTree = "<group>"; };
 		FEFA82152423DDE300320636 /* Deviget-iOS-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deviget-iOS-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEFA82182423DDE300320636 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEFA821A2423DDE300320636 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -64,6 +68,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FEDAD42524240DC100CA8191 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				FEDAD42624240DD400CA8191 /* UIKit+Deviget.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		FEDAD42824241A1C00CA8191 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				FEDAD42924241A2D00CA8191 /* CircularView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		FEFA820C2423DDE300320636 = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +105,7 @@
 		FEFA82172423DDE300320636 /* Deviget-iOS-Test */ = {
 			isa = PBXGroup;
 			children = (
+				FEDAD42524240DC100CA8191 /* Categories */,
 				FEFA823F2423E17D00320636 /* Delegates */,
 				FEFA82412423E1A300320636 /* Resources */,
 				FEFA823C2423E16400320636 /* UI */,
@@ -108,6 +129,7 @@
 				FEFA823E2423E17200320636 /* Presenters */,
 				FEFA82402423E19200320636 /* Storyboards */,
 				FEFA82422423E39A00320636 /* TableCells */,
+				FEDAD42824241A1C00CA8191 /* Views */,
 				FEFA823D2423E16D00320636 /* ViewControllers */,
 				FEFA82452423F02D00320636 /* ViewModels */,
 			);
@@ -278,7 +300,9 @@
 				FEFA82192423DDE300320636 /* AppDelegate.swift in Sources */,
 				FEFA821B2423DDE300320636 /* SceneDelegate.swift in Sources */,
 				FEFA821D2423DDE300320636 /* MasterViewController.swift in Sources */,
+				FEDAD42A24241A2D00CA8191 /* CircularView.swift in Sources */,
 				FEFA821F2423DDE300320636 /* DetailViewController.swift in Sources */,
+				FEDAD42724240DD400CA8191 /* UIKit+Deviget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

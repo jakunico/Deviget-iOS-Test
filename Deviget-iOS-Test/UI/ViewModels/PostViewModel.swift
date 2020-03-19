@@ -10,6 +10,9 @@ import Foundation
 
 struct PostViewModel {
     
+    /// A unique identifier of the post that generated this view model.
+    let postIdentifier: String
+    
     /// Indicates whether this post has been read or not.
     let isRead: Bool
     
@@ -30,5 +33,16 @@ struct PostViewModel {
     
     /// The number of comments, i.e. "3215 comments".
     let comments: String
+    
+    func asRead() -> PostViewModel {
+        return PostViewModel(postIdentifier: postIdentifier,
+                             isRead: true,
+                             subreddit: subreddit,
+                             timeAgo: timeAgo,
+                             title: title,
+                             image: image,
+                             user: user,
+                             comments: comments)
+    }
     
 }
