@@ -81,13 +81,9 @@
 		FEFA82172423DDE300320636 /* Deviget-iOS-Test */ = {
 			isa = PBXGroup;
 			children = (
-				FEFA82182423DDE300320636 /* AppDelegate.swift */,
-				FEFA821A2423DDE300320636 /* SceneDelegate.swift */,
-				FEFA821C2423DDE300320636 /* MasterViewController.swift */,
-				FEFA821E2423DDE300320636 /* DetailViewController.swift */,
-				FEFA82202423DDE300320636 /* Main.storyboard */,
-				FEFA82232423DDE600320636 /* Assets.xcassets */,
-				FEFA82252423DDE600320636 /* LaunchScreen.storyboard */,
+				FEFA823F2423E17D00320636 /* Delegates */,
+				FEFA82412423E1A300320636 /* Resources */,
+				FEFA823C2423E16400320636 /* UI */,
 				FEFA82282423DDE600320636 /* Info.plist */,
 			);
 			path = "Deviget-iOS-Test";
@@ -100,6 +96,58 @@
 				FEFA82332423DDE600320636 /* Info.plist */,
 			);
 			path = "Deviget-iOS-TestTests";
+			sourceTree = "<group>";
+		};
+		FEFA823C2423E16400320636 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				FEFA82402423E19200320636 /* Storyboards */,
+				FEFA823E2423E17200320636 /* Presenters */,
+				FEFA823D2423E16D00320636 /* ViewControllers */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
+		FEFA823D2423E16D00320636 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				FEFA821C2423DDE300320636 /* MasterViewController.swift */,
+				FEFA821E2423DDE300320636 /* DetailViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		FEFA823E2423E17200320636 /* Presenters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenters;
+			sourceTree = "<group>";
+		};
+		FEFA823F2423E17D00320636 /* Delegates */ = {
+			isa = PBXGroup;
+			children = (
+				FEFA82182423DDE300320636 /* AppDelegate.swift */,
+				FEFA821A2423DDE300320636 /* SceneDelegate.swift */,
+			);
+			path = Delegates;
+			sourceTree = "<group>";
+		};
+		FEFA82402423E19200320636 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				FEFA82252423DDE600320636 /* LaunchScreen.storyboard */,
+				FEFA82202423DDE300320636 /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		FEFA82412423E1A300320636 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FEFA82232423DDE600320636 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
