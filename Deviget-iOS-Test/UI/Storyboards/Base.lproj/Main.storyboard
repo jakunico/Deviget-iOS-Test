@@ -58,8 +58,9 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZt-st-duX">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="cZt-st-duX" customClass="RemoteImageView" customModule="Deviget_iOS_Test" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="133" width="384" height="150"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="150" placeholder="YES" id="wdS-yV-Huc"/>
                                         </constraints>
@@ -139,24 +140,24 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="293" id="WCw-Qf-5nD" customClass="PostTableCell" customModule="Deviget_iOS_Test" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="414" height="293"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" rowHeight="404" id="WCw-Qf-5nD" customClass="PostTableCell" customModule="Deviget_iOS_Test" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="404"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WCw-Qf-5nD" id="37f-cq-3Eg">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="293"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="404"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ozt-lT-6du">
-                                            <rect key="frame" x="20" y="11" width="374" height="209"/>
+                                            <rect key="frame" x="20" y="11" width="374" height="316"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="CXb-ia-ExB">
-                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="18"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="374" height="50"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J9d-Ir-ZX3">
-                                                            <rect key="frame" x="0.0" y="0.0" width="10" height="18"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="10" height="50"/>
                                                             <subviews>
                                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2xX-0e-cWp" customClass="CircularView" customModule="Deviget_iOS_Test" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="4" width="10" height="10"/>
+                                                                    <rect key="frame" x="0.0" y="20" width="10" height="10"/>
                                                                     <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="10" id="GQ1-ex-vaX"/>
@@ -173,13 +174,13 @@
                                                             </constraints>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="r/subreddit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YAi-ab-xeI">
-                                                            <rect key="frame" x="18" y="0.0" width="266.5" height="18"/>
+                                                            <rect key="frame" x="18" y="0.0" width="266.5" height="50"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="2 hours ago" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vpJ-mg-FHd">
-                                                            <rect key="frame" x="292.5" y="0.0" width="81.5" height="18"/>
+                                                            <rect key="frame" x="292.5" y="0.0" width="81.5" height="50"/>
                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
@@ -187,17 +188,21 @@
                                                     </subviews>
                                                 </stackView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4OS-dC-HUP">
-                                                    <rect key="frame" x="0.0" y="26" width="374" height="99"/>
+                                                    <rect key="frame" x="0.0" y="58" width="374" height="124"/>
                                                     <string key="text">This is the title of the post, it is long here to show that we support multiple lines so that you can read the full title without having to check detail.</string>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mqz-pR-slm">
-                                                    <rect key="frame" x="0.0" y="133" width="374" height="50"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Mqz-pR-slm" customClass="RemoteImageView" customModule="Deviget_iOS_Test" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="190" width="374" height="100"/>
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="100" id="22H-MR-lcA"/>
+                                                    </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="1lJ-k9-6hw">
-                                                    <rect key="frame" x="0.0" y="191" width="374" height="18"/>
+                                                    <rect key="frame" x="0.0" y="298" width="374" height="18"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="750" verticalHuggingPriority="251" text="u/username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gY-hC-urI">
                                                             <rect key="frame" x="0.0" y="0.0" width="81.5" height="18"/>
@@ -216,7 +221,7 @@
                                             </subviews>
                                         </stackView>
                                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d9m-mp-3Z8">
-                                            <rect key="frame" x="20" y="235" width="69" height="32"/>
+                                            <rect key="frame" x="20" y="342" width="69" height="36"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
                                             <state key="normal" title="Dismiss"/>
                                             <connections>

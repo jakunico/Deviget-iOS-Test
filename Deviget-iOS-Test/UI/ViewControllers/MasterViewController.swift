@@ -153,7 +153,7 @@ class MasterViewController: UITableViewController {
                                  subreddit: "r/gaming",
                                  timeAgo: "2 hours ago",
                                  title: "A wild post appeared!",
-                                 image: nil,
+                                 image: URL(string: "https://homepages.cae.wisc.edu/~ece533/images/airplane.png")!,
                                  user: "u/nicolas",
                                  comments: "341 comments")
         addObjects([post])

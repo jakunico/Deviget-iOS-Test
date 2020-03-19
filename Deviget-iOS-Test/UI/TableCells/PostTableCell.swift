@@ -29,6 +29,7 @@ class PostTableCell: UITableViewCell {
             titleLabel.text = viewModel.title
             userLabel.text = viewModel.user
             commentsLabel.text = viewModel.comments
+            postImageView.url = viewModel.image
             postImageView.isHidden = viewModel.image == nil
         }
     }
@@ -38,7 +39,7 @@ class PostTableCell: UITableViewCell {
     @IBOutlet private weak var unreadIndicationView: UIView!
     @IBOutlet private weak var subredditLabel: UILabel!
     @IBOutlet private weak var timeAgoLabel: UILabel!
-    @IBOutlet private weak var postImageView: UIImageView!
+    @IBOutlet private weak var postImageView: RemoteImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var userLabel: UILabel!
     @IBOutlet private weak var commentsLabel: UILabel!

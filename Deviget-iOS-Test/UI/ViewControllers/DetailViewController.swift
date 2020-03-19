@@ -21,7 +21,7 @@ class DetailViewController: UIViewController {
     @IBOutlet private weak var subredditLabel: UILabel!
     @IBOutlet private weak var timeAgoLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var postImageView: UIImageView!
+    @IBOutlet private weak var postImageView: RemoteImageView!
     @IBOutlet private weak var userLabel: UILabel!
     @IBOutlet private weak var commentsLabel: UILabel!
     @IBOutlet private weak var noPostLabel: UILabel!
@@ -44,7 +44,9 @@ class DetailViewController: UIViewController {
             $0?.isHidden = viewModel == nil
         }
         
+        postImageView.url = viewModel?.image
         postImageView.isHidden = viewModel?.image == nil
+        
         noPostLabel.isHidden = viewModel != nil
         
     }

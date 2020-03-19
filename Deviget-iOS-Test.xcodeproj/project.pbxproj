@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		FEDAD42724240DD400CA8191 /* UIKit+Deviget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD42624240DD400CA8191 /* UIKit+Deviget.swift */; };
 		FEDAD42A24241A2D00CA8191 /* CircularView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD42924241A2D00CA8191 /* CircularView.swift */; };
+		FEDAD42C2424253B00CA8191 /* RemoteImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD42B2424253B00CA8191 /* RemoteImageView.swift */; };
+		FEDAD42F242429C900CA8191 /* ImageDownloaderSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD42E242429C900CA8191 /* ImageDownloaderSession.swift */; };
 		FEFA82192423DDE300320636 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82182423DDE300320636 /* AppDelegate.swift */; };
 		FEFA821B2423DDE300320636 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA821A2423DDE300320636 /* SceneDelegate.swift */; };
 		FEFA821D2423DDE300320636 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA821C2423DDE300320636 /* MasterViewController.swift */; };
@@ -34,6 +36,8 @@
 /* Begin PBXFileReference section */
 		FEDAD42624240DD400CA8191 /* UIKit+Deviget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIKit+Deviget.swift"; sourceTree = "<group>"; };
 		FEDAD42924241A2D00CA8191 /* CircularView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularView.swift; sourceTree = "<group>"; };
+		FEDAD42B2424253B00CA8191 /* RemoteImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteImageView.swift; sourceTree = "<group>"; };
+		FEDAD42E242429C900CA8191 /* ImageDownloaderSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDownloaderSession.swift; sourceTree = "<group>"; };
 		FEFA82152423DDE300320636 /* Deviget-iOS-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deviget-iOS-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEFA82182423DDE300320636 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEFA821A2423DDE300320636 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,8 +84,17 @@
 			isa = PBXGroup;
 			children = (
 				FEDAD42924241A2D00CA8191 /* CircularView.swift */,
+				FEDAD42B2424253B00CA8191 /* RemoteImageView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		FEDAD42D242425A000CA8191 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FEDAD42E242429C900CA8191 /* ImageDownloaderSession.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		FEFA820C2423DDE300320636 = {
@@ -105,6 +118,7 @@
 		FEFA82172423DDE300320636 /* Deviget-iOS-Test */ = {
 			isa = PBXGroup;
 			children = (
+				FEDAD42D242425A000CA8191 /* Networking */,
 				FEDAD42524240DC100CA8191 /* Categories */,
 				FEFA823F2423E17D00320636 /* Delegates */,
 				FEFA82412423E1A300320636 /* Resources */,
@@ -296,6 +310,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				FEFA82472423F04500320636 /* PostViewModel.swift in Sources */,
+				FEDAD42C2424253B00CA8191 /* RemoteImageView.swift in Sources */,
 				FEFA82442423E3C400320636 /* PostTableCell.swift in Sources */,
 				FEFA82192423DDE300320636 /* AppDelegate.swift in Sources */,
 				FEFA821B2423DDE300320636 /* SceneDelegate.swift in Sources */,
@@ -303,6 +318,7 @@
 				FEDAD42A24241A2D00CA8191 /* CircularView.swift in Sources */,
 				FEFA821F2423DDE300320636 /* DetailViewController.swift in Sources */,
 				FEDAD42724240DD400CA8191 /* UIKit+Deviget.swift in Sources */,
+				FEDAD42F242429C900CA8191 /* ImageDownloaderSession.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
