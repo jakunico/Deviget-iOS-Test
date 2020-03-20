@@ -60,7 +60,9 @@ extension PostViewModel {
         }()
         title = post.title
         
-        if let thumbnail = post.thumbnail {
+        // Need to control a special case where value "default" is sent by the API in the `thumbnail` attribute
+        // And, believe it or not, `URL(string: "default")` returns an `URL` instance instead of `nil`....
+        if let thumbnail = post.thumbnail, thumbnail.starts(with: "http") {
             image = URL(string: thumbnail)
         } else {
             image = nil
