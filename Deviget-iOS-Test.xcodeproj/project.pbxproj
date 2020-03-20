@@ -16,6 +16,7 @@
 		FEDAD4382424685D00CA8191 /* Requests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD4372424685D00CA8191 /* Requests.swift */; };
 		FEDAD43B24246D6100CA8191 /* Swift+Deviget.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD43A24246D6100CA8191 /* Swift+Deviget.swift */; };
 		FEDAD43D2424769C00CA8191 /* MasterPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD43C2424769C00CA8191 /* MasterPresenter.swift */; };
+		FEDAD44024247E0C00CA8191 /* PictureGalleryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEDAD43F24247E0C00CA8191 /* PictureGalleryController.swift */; };
 		FEFA82192423DDE300320636 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA82182423DDE300320636 /* AppDelegate.swift */; };
 		FEFA821B2423DDE300320636 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA821A2423DDE300320636 /* SceneDelegate.swift */; };
 		FEFA821D2423DDE300320636 /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFA821C2423DDE300320636 /* MasterViewController.swift */; };
@@ -48,6 +49,7 @@
 		FEDAD4372424685D00CA8191 /* Requests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Requests.swift; sourceTree = "<group>"; };
 		FEDAD43A24246D6100CA8191 /* Swift+Deviget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Swift+Deviget.swift"; sourceTree = "<group>"; };
 		FEDAD43C2424769C00CA8191 /* MasterPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterPresenter.swift; sourceTree = "<group>"; };
+		FEDAD43F24247E0C00CA8191 /* PictureGalleryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PictureGalleryController.swift; sourceTree = "<group>"; };
 		FEFA82152423DDE300320636 /* Deviget-iOS-Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Deviget-iOS-Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		FEFA82182423DDE300320636 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FEFA821A2423DDE300320636 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +127,14 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		FEDAD43E24247D6C00CA8191 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				FEDAD43F24247E0C00CA8191 /* PictureGalleryController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		FEFA820C2423DDE300320636 = {
 			isa = PBXGroup;
 			children = (
@@ -146,10 +156,11 @@
 		FEFA82172423DDE300320636 /* Deviget-iOS-Test */ = {
 			isa = PBXGroup;
 			children = (
+				FEDAD42524240DC100CA8191 /* Categories */,
+				FEDAD43E24247D6C00CA8191 /* Controllers */,
+				FEFA823F2423E17D00320636 /* Delegates */,
 				FEDAD4342424673600CA8191 /* Model */,
 				FEDAD42D242425A000CA8191 /* Networking */,
-				FEDAD42524240DC100CA8191 /* Categories */,
-				FEFA823F2423E17D00320636 /* Delegates */,
 				FEFA82412423E1A300320636 /* Resources */,
 				FEFA823C2423E16400320636 /* UI */,
 				FEDAD43924246D4D00CA8191 /* Utilities */,
@@ -349,6 +360,7 @@
 				FEDAD43D2424769C00CA8191 /* MasterPresenter.swift in Sources */,
 				FEDAD43B24246D6100CA8191 /* Swift+Deviget.swift in Sources */,
 				FEFA82192423DDE300320636 /* AppDelegate.swift in Sources */,
+				FEDAD44024247E0C00CA8191 /* PictureGalleryController.swift in Sources */,
 				FEFA821B2423DDE300320636 /* SceneDelegate.swift in Sources */,
 				FEFA821D2423DDE300320636 /* MasterViewController.swift in Sources */,
 				FEDAD42A24241A2D00CA8191 /* CircularView.swift in Sources */,

@@ -29,6 +29,15 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configure(with: viewModel)
+        
+        postImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(actionImageTap)))
+        postImageView.isUserInteractionEnabled = true // otherwise gesture is not detected
+    }
+    
+    @objc private func actionImageTap() {
+        if let image = postImageView.image {
+            PictureGalleryController.save(image: image)
+        }
     }
     
     private func configure(with viewModel: PostViewModel?) {
