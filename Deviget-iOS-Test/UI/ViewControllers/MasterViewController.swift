@@ -10,10 +10,26 @@ import UIKit
 
 class MasterPresenter {
     let masterViewController: MasterViewController
+    let network: Network
     var detailViewController: DetailViewController?
     
-    init(masterViewController: MasterViewController) {
+    init(masterViewController: MasterViewController, network: Network = .shared) {
         self.masterViewController = masterViewController
+        self.network = network
+        fetchPosts()
+    }
+    
+    func fetchPosts() {
+        network.top(request: TopRequest(time: .day, after: nil, limit: 10)) { response in
+            switch response {
+            case .error(let error):
+                print("MasterPresenter: Failed to fetch posts with error \(error)")
+            case .success(let object):
+                let objects = object.data.children.map({ PostViewModel(post: $0) })
+                DispatchQueue.main.async { self.masterViewController.addObjects(objects) }
+                
+            }
+        }
     }
     
     func prepare(for segue: UIStoryboardSegue) {
@@ -33,9 +49,9 @@ class MasterPresenter {
             controller.viewModel = viewModelAsRead
             controller.navigationItem.leftBarButtonItem = masterViewController.splitViewController?.displayModeButtonItem
             controller.navigationItem.leftItemsSupplementBackButton = true
-            
             detailViewController = controller
 
+            // Mark as read
             masterViewController.replaceObject(viewModel, with: viewModelAsRead)
             
         default:
@@ -79,6 +95,8 @@ class MasterViewController: UITableViewController {
         tableView.endUpdates()
     }
     
+    /// Replaces the given object on the list with the new one.
+    /// Animates content update on the cell.
     func replaceObject(_ object: PostViewModel, with newObject: PostViewModel) {
         if let index = objects.firstIndex(where: { $0.postIdentifier == object.postIdentifier }) {
             objects[index] = newObject

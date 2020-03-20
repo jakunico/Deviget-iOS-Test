@@ -13,10 +13,9 @@ class RemoteImageView: UIImageView {
 
     var url: URL? {
         didSet {
+            image = nil
             if let url = url {
                 loadImage(fromUrl: url)
-            } else {
-                image = nil
             }
         }
     }

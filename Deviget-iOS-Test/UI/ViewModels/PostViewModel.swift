@@ -46,3 +46,28 @@ struct PostViewModel {
     }
     
 }
+
+extension PostViewModel {
+    init(post: Post) {
+        postIdentifier = post.id
+        isRead = post.visited
+        subreddit = "r/" + post.subreddit
+        timeAgo = {
+            let date = Date(timeIntervalSince1970: post.createdAt)
+            let formatter = RelativeDateTimeFormatter()
+            formatter.unitsStyle = .full
+            return formatter.localizedString(for: date, relativeTo: Date())
+        }()
+        title = post.title
+        
+        if let thumbnail = post.thumbnail {
+            image = URL(string: thumbnail)
+        } else {
+            image = nil
+        }
+
+        user = "u/" + post.author
+        comments = "\(post.comments) comments"
+        
+    }
+}

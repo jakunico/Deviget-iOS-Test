@@ -9,6 +9,7 @@
 import Foundation
 
 class ImageDownloader {
+    /// The session to be used to download images with strong caching policy.
     static let session = URLSession(configuration: {
         let configuration = URLSessionConfiguration.default
         configuration.requestCachePolicy = .returnCacheDataElseLoad
