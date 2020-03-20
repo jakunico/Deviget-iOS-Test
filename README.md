@@ -18,5 +18,15 @@
 
 I had to leave these out due to time constraints:
 
-- App state preservation/restoration
-- Unit Tests
+- Proper networking error handling and retry mechanism.
+- App state preservation/restoration.
+- Unit Tests / UI Tests.
+
+### Architecture overview
+
+- Used Xcode's Master-Detail template as a starting point.
+- Used Model-View-Presenter approach (in `MasterViewController` and `DetailViewController` which are managed by `MasterPresenter`).
+- Used Model-View-ViewModel approach (in `DetailViewController` and `PostTableCell`). Both of these receive a `PostViewModel` that contains all data necessary to display a `Post`.
+- Networking layer uses Swift generics and response patterns providing an easy way to add more endpoints in the future.
+- Swift's `Codable` is used to perform decoding of JSON data into our model objects.
+- Swift's `URLSession` is used for all requests. Image requests check cache first before reaching the API for improved UX and loading times.
