@@ -167,6 +167,12 @@ class MasterViewController: UITableViewController {
         
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        if indexPath.row == objects.count - 1 {
+            presenter.reachedEndOfList()
+        }
+    }
 
 }
 

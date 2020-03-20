@@ -14,6 +14,9 @@ class MasterPresenter {
     let network: Network
     
     var detailViewController: DetailViewController?
+    var nextPage: String?
+    var hasMore = true
+    var isRequesting = false
     
     init(masterViewController: MasterViewController, network: Network = .shared) {
         self.masterViewController = masterViewController
@@ -22,15 +25,26 @@ class MasterPresenter {
     }
     
     private func fetchPosts() {
-        network.top(request: TopRequest(time: .day, after: nil, limit: 10)) { response in
+        guard hasMore else { return }
+        guard !isRequesting else { return }
+        isRequesting = true
+        network.top(request: TopRequest(time: .day, after: nextPage, limit: 10)) { response in
+            self.isRequesting = false
             switch response {
             case .error(let error):
                 print("MasterPresenter: Failed to fetch posts with error \(error)")
             case .success(let object):
+                self.hasMore = object.data.after == nil
+                self.nextPage = object.data.after
                 let objects = object.data.children.map({ PostViewModel(post: $0) })
                 DispatchQueue.main.async { self.masterViewController.addObjects(objects) }
             }
         }
+    }
+    
+    // Called when the master displays the last items in the listing.
+    func reachedEndOfList() {
+        fetchPosts()
     }
     
     // Called when the master receives a segue request.
