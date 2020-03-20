@@ -30,6 +30,7 @@ class MasterViewController: UITableViewController {
             tableView.insertRows(at: [IndexPath(row: objects.count - 1, section: 0)], with: .automatic)
         }
         tableView.endUpdates()
+        tableView.refreshControl?.endRefreshing()
     }
     
     /// Replaces the given object on the list with the new one.
@@ -69,14 +70,18 @@ class MasterViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        func setupTableView() {
+        func removeSeparatorLines() {
             tableView.tableFooterView = UIView() // Removes separator lines in unused cells
         }
         
-        setupTableView()
-        #if DEBUG
-        addGenerateRandomPostButton()
-        #endif
+        func addRefreshControl() {
+            tableView.refreshControl = UIRefreshControl() .. {
+                $0.addTarget(self, action: #selector(actionPullToRefresh), for: .valueChanged)
+            }
+        }
+        
+        removeSeparatorLines()
+        addRefreshControl()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -95,29 +100,12 @@ class MasterViewController: UITableViewController {
         navigationItem.rightBarButtonItem = nil
     }
     
-    #if DEBUG
-    
-    func addGenerateRandomPostButton() {
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(actionGenerateSamplePost))
-        navigationItem.leftBarButtonItem = addButton
-    }
-    
-    @objc func actionGenerateSamplePost() {
-        let post = PostViewModel(postIdentifier: UUID().uuidString,
-                                 isRead: false,
-                                 subreddit: "r/gaming",
-                                 timeAgo: "2 hours ago",
-                                 title: "A wild post appeared!",
-                                 image: URL(string: "https://homepages.cae.wisc.edu/~ece533/images/airplane.png")!,
-                                 user: "u/nicolas",
-                                 comments: "341 comments")
-        addObjects([post])
-    }
-    
-    #endif
-    
     // MARK: - Actions
 
+    @objc func actionPullToRefresh() {
+        presenter.pullToRefresh()
+    }
+    
     @objc func actionDismissAll() {
         guard objects.count > 0 else { return } // Nothing to dismiss
         
